@@ -32,29 +32,19 @@ cd gemini-genkit-api
 
 ### 2. Environment Configuration
 
-Create a `.env` file in the root directory:
+Run the bash command into your terminal to export the **Gemini API Key**:
 
 ```bash
-# Google AI API Key for Gemini
-GOOGLE_API_KEY=your_google_ai_api_key_here
+export GEMINI_API_KEY="your_gemini_api_key_here"
 ```
 
-**To get your Google AI API Key:**
+**To get your Gemini API Key:**
 
-1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
+1. Visit [Google AI Studio](https://aistudio.google.com/apikey)
 2. Create a new API key
-3. Copy the key and add it to your `.env` file
+3. Set up billng via GCP
 
-### 3. TypeScript Setup
-
-Navigate to the TypeScript directory and install dependencies:
-
-```bash
-cd ts
-pnpm install  # or npm install
-```
-
-### 4. Go Setup (Optional)
+### 3. Demo 1 - Go Setup
 
 Navigate to the Go directory and install dependencies:
 
@@ -63,20 +53,18 @@ cd go
 go mod tidy
 ```
 
-## 🏃‍♂️ Running the Applications
+### 4. Demo 2 - TypeScript Setup
 
-### TypeScript Application
-
-#### Option 1: Run the Console Application
+Navigate to the TypeScript directory and install dependencies:
 
 ```bash
 cd ts
-pnpm dev
+pnpm install  # or npm install
 ```
 
-This will execute the restaurant menu generator with the default example and output a complete menu to the console.
+## 🏃‍♂️ Running the Applications
 
-#### Option 2: Use the Interactive Genkit UI (Recommended)
+### TypeScript Application
 
 ```bash
 cd ts
@@ -90,7 +78,7 @@ This starts the Genkit developer UI at `http://localhost:4000` where you can:
 - Experiment with different inputs
 - Debug and monitor your flows
 
-### Go Application
+### Golang Application
 
 ```bash
 cd go
@@ -175,61 +163,6 @@ The generator creates a complete restaurant menu including:
 - **Specialties**: Chef's special dishes (optional)
 - **Fun Elements**: Amusing restaurant facts and themed wordplay
 
-## 🔧 Development
-
-### Project Structure
-
-```
-gemini-genkit-api/
-├── ts/                     # TypeScript implementation
-│   ├── index.ts           # Main restaurant menu generator
-│   ├── package.json       # Dependencies and scripts
-│   └── tsconfig.json      # TypeScript configuration
-├── go/                    # Go implementation
-│   ├── main.go           # Go Genkit implementation
-│   ├── go.mod            # Go module definition
-│   └── go.sum            # Go dependencies
-├── .env                  # Environment variables
-└── README.md            # This file
-```
-
-### Available Scripts (TypeScript)
-
-- `pnpm dev` - Run the application in development mode
-- `pnpm genkit:ui` - Start the interactive Genkit UI
-- `pnpm test` - Run tests (to be implemented)
-
-### Customizing the Generator
-
-You can modify the restaurant menu generator by:
-
-1. **Adjusting the prompt** in `restaurantMenuGeneratorFlow`
-2. **Modifying schemas** to add/remove fields
-3. **Changing the AI model** configuration
-4. **Adding new flow variations** for different restaurant types
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **API Key Issues**
-
-   - Ensure your `GOOGLE_API_KEY` is correctly set in `.env`
-   - Verify the API key has proper permissions
-
-2. **Port Conflicts**
-
-   - If port 4000 is in use, Genkit will automatically use the next available port
-
-3. **Module Resolution**
-
-   - Make sure you're using Node.js v18 or higher
-   - Try deleting `node_modules` and running `pnpm install` again
-
-4. **TypeScript Errors**
-   - Ensure all dependencies are installed
-   - Check that `tsx` is available for running TypeScript files
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -240,11 +173,11 @@ You can modify the restaurant menu generator by:
 
 ## 📄 License
 
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- [Firebase Genkit](https://firebase.google.com/docs/genkit) for the amazing AI development framework
+- [Firebase Genkit](https://genkit.dev/) for the amazing AI development framework
 - [Google Gemini](https://ai.google.dev/) for the powerful AI models
 - The open-source community for continuous inspiration
 
