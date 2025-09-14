@@ -1,3 +1,5 @@
+<img width="1200" height="630" alt="image" src="https://github.com/user-attachments/assets/dc5a0d1f-a372-49ea-b6a9-f6b18970feb3" />
+
 # 🚀 Gemini Genkit API
 
 Building Firebase Genkit APIs using TypeScript and Golang with Google's Gemini AI models. This project features a creative **Restaurant Menu Generator** that creates themed restaurant menus based on your specifications!
