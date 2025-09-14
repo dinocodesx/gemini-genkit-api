@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/firebase/genkit/go/ai"
@@ -214,10 +213,7 @@ func main() {
 	mux.HandleFunc("POST /foodRecipeFlow", genkit.Handler(foodRecipeFlow))
 
 	// Start the server
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
+	port := "8080"
 
 	log.Printf("🚀 Food Recipe API starting on http://localhost:%s", port)
 	log.Printf("📖 API Documentation: GET http://localhost:%s/", port)
