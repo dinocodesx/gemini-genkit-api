@@ -90,7 +90,7 @@ export const restaurantMenuGeneratorFlow = ai.defineFlow(
 
     Make the menu items sound delicious while incorporating humor and theme-appropriate wordplay. The descriptions should be enticing enough to make customers want to order everything!`;
 
-    // Generate structured menu data
+    // Generate structured menu data - Genkit Model Calling
     const { output } = await ai.generate({
       prompt,
       output: { schema: RestaurantMenuSchema },

@@ -19,7 +19,7 @@ Before you begin, ensure you have the following installed:
 - **Node.js** (v18 or higher)
 - **pnpm** (recommended) or npm
 - **Go** (v1.24.1 or higher)
-- **Google AI API Key** (Gemini)
+- **Gemini API Key**
 
 ## 🛠️ Setup Instructions
 

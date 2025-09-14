@@ -94,7 +94,7 @@ func main() {
 		Make sure the recipe is practical and achievable for home cooking.`,
 			input.FoodName, input.FoodName, difficulty, servingSize, dietaryRestrictions)
 
-		// Generate structured recipe data
+		// Generate structured recipe data - Genkit Model Calling
 		recipe, _, err := genkit.GenerateData[FoodRecipe](ctx, g,
 			ai.WithPrompt(prompt),
 		)
