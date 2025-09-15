@@ -21,6 +21,72 @@ Before you begin, ensure you have the following installed:
 - **Go** (v1.24.1 or higher)
 - **Gemini API Key**
 
+### Guide for Installing Golang
+
+1. **Download the latest Go version:**
+
+   ```bash
+   # Check the latest version at https://golang.org/dl/
+   wget https://go.dev/dl/go1.24.1.linux-amd64.tar.gz
+   ```
+
+2. **Remove any previous Go installation and extract:**
+
+   ```bash
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf go1.24.1.linux-amd64.tar.gz
+   ```
+
+3. **Add Go to your PATH:**
+
+   ```bash
+   # Add to your ~/.bashrc or ~/.zshrc
+   echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
+   echo 'export GOPATH=$HOME/go' >> ~/.zshrc
+   echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.zshrc
+   source ~/.zshrc
+   ```
+
+4. **Verify installation:**
+   ```bash
+   go version
+   ```
+
+### Guide for Installing PNPM Package Manager
+
+#### Option 1: Using NPM (if you have Node.js)
+
+```bash
+npm install -g pnpm
+```
+
+#### Option 2: Using Standalone Script (Recommended)
+
+```bash
+# Install using the official installer script
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+
+# Add pnpm to your PATH (add to ~/.bashrc or ~/.zshrc)
+echo 'export PNPM_HOME="$HOME/.local/share/pnpm"' >> ~/.zshrc
+echo 'case ":$PATH:" in *":$PNPM_HOME:"*) ;; *) export PATH="$PNPM_HOME:$PATH" ;; esac' >> ~/.zshrc
+source ~/.zshrc
+```
+
+#### Option 3: Using Node Version Manager (nvm):
+
+```bash
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+source ~/.zshrc
+
+# Install latest LTS Node.js
+nvm install --lts
+nvm use --lts
+
+# Install pnpm
+npm install -g pnpm
+```
+
 ## 🛠️ Setup Instructions
 
 ### 1. Clone the Repository
@@ -68,6 +134,7 @@ pnpm install  # or npm install
 
 ```bash
 cd ts
+pnpm install -g genkit-cli
 pnpm genkit:ui
 ```
 
