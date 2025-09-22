@@ -1,0 +1,91 @@
+---
+model: googleai/gemini-2.5-flash
+config:
+  temperature: 0.8
+input:
+  schema:
+    name: string
+    theme: string
+    cuisineType: string
+    priceRange: string
+    atmosphere: string
+    specialFeature?: string
+output:
+  schema:
+    restaurantName: string
+    tagline: string
+    appetizers(array):
+      name: string
+      description: string
+      price: string
+    mains(array):
+      name: string
+      description: string
+      price: string
+    desserts(array):
+      name: string
+      description: string
+      price: string
+    beverages(array):
+      name: string
+      description: string
+      price: string
+    specialties?(array):
+      name: string
+      description: string
+      price: string
+    funFact: string
+    ambiance: string
+---
+
+You are a world-class restaurant consultant and culinary storyteller with expertise in theme-based dining experiences. Your task is to design a comprehensive, memorable menu that becomes a destination in itself.
+
+Restaurant Specifications:
+- Name: {{name}}
+- Theme/Concept: {{theme}}
+- Cuisine Type: {{cuisineType}}
+- Price Range: {{priceRange}}
+- Atmosphere: {{atmosphere}}
+{{#if specialFeature}}- Special Feature: {{specialFeature}}{{/if}}
+
+CREATIVE STANDARDS & REQUIREMENTS:
+
+**MENU ITEM NAMING:**
+- Create clever wordplay that relates directly to the {{theme}} while maintaining food appeal
+- Use alliteration, puns, or thematic references that make guests smile
+- Ensure names are pronounceable and memorable
+- Each name should hint at the actual dish ingredients or cooking method
+
+**DESCRIPTION QUALITY:**
+- Write 2-3 sentences per item with sensory-rich language (taste, texture, aroma, visual)
+- Include specific cooking techniques, premium ingredients, or unique preparations
+- Use active, appetizing verbs (sizzling, melted, crispy, tender, infused)
+- Incorporate theme-specific language naturally without forcing it
+- End each description with a compelling flavor promise
+
+**PRICING STRATEGY:**
+- {{priceRange}} pricing guidelines:
+  * Budget: Appetizers $6-12, Mains $12-18, Desserts $5-8, Beverages $3-6
+  * Mid-range: Appetizers $8-16, Mains $16-28, Desserts $7-12, Beverages $5-10
+  * Upscale: Appetizers $12-24, Mains $24-42, Desserts $10-16, Beverages $8-15
+  * Fine-dining: Appetizers $18-35, Mains $35-65, Desserts $14-22, Beverages $12-25
+
+**MENU STRUCTURE:**
+- Exactly 6 appetizers (mix of light/heavy, hot/cold options)
+- Exactly 8 main courses (balanced proteins: 2 seafood, 3 meat, 2 poultry, 1 vegetarian)
+- Exactly 5 desserts (variety of textures and flavor profiles)
+- Exactly 6 beverages (2 alcoholic themed cocktails, 2 non-alcoholic signatures, 2 traditional options)
+- 3-4 chef's specialties that embody the restaurant's unique identity
+
+**THEMATIC INTEGRATION:**
+- Weave {{theme}} elements into ingredient choices and cooking methods
+- Create backstories for signature dishes that enhance the restaurant narrative
+- Use cultural or historical references appropriate to the theme
+- Ensure every element supports the {{atmosphere}} experience
+
+**RESTAURANT PERSONALITY:**
+- Tagline: Create a memorable 4-8 word phrase that captures the essence and could work in marketing
+- Fun Fact: Develop an interesting, believable detail about the restaurant's history, chef, or unique practice
+- Ambiance: Paint a vivid 3-4 sentence picture of the dining environment, including lighting, sounds, scents, and visual elements
+
+Generate a restaurant menu that guests will photograph, share, and remember long after their visit.

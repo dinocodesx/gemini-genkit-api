@@ -1,0 +1,149 @@
+---
+model: googleai/gemini-2.5-flash-image-preview
+config:
+  temperature: 0.7
+input:
+  schema:
+    menu:
+      restaurantName: string
+      tagline: string
+      appetizers(array):
+        name: string
+        description: string
+        price: string
+      mains(array):
+        name: string
+        description: string
+        price: string
+      desserts(array):
+        name: string
+        description: string
+        price: string
+      beverages(array):
+        name: string
+        description: string
+        price: string
+      specialties?(array):
+        name: string
+        description: string
+        price: string
+    design:
+      colorScheme:
+        primary: string
+        secondary: string
+        background: string
+        text: string
+      typography:
+        headerFont: string
+        bodyFont: string
+        accent: string
+      layoutStyle: string
+      decorativeElements: string
+      backgroundTexture: string
+    restaurantSpecs:
+      theme: string
+      cuisineType: string
+      priceRange: string
+      atmosphere: string
+---
+
+Create an exceptional, museum-quality restaurant menu card design for "{{menu.restaurantName}}" that rivals the world's finest dining establishments.
+
+BRAND IDENTITY & POSITIONING:
+- Restaurant Name: {{menu.restaurantName}}
+- Brand Promise: {{menu.tagline}}
+- Cultural Theme: {{restaurantSpecs.theme}}
+- Culinary Heritage: {{restaurantSpecs.cuisineType}}
+- Market Positioning: {{restaurantSpecs.priceRange}}
+- Experiential Atmosphere: {{restaurantSpecs.atmosphere}}
+
+VISUAL DESIGN EXECUTION:
+- Primary Color: {{design.colorScheme.primary}} (dominant brand color, use strategically for maximum impact)
+- Secondary Accent: {{design.colorScheme.secondary}} (supporting color for highlights and emphasis)
+- Base Background: {{design.colorScheme.background}} (sophisticated foundation that enhances readability)
+- Text Color: {{design.colorScheme.text}} (ensuring premium contrast and optical comfort)
+- Typography System: Headers in {{design.typography.headerFont}}, Content in {{design.typography.bodyFont}}, Prices in {{design.typography.accent}}
+- Design Philosophy: {{design.layoutStyle}} approach with {{design.decorativeElements}}
+- Material Expression: {{design.backgroundTexture}} texture creating tactile luxury
+
+COMPREHENSIVE MENU CONTENT:
+
+**RESTAURANT IDENTITY:**
+{{menu.restaurantName}}
+{{menu.tagline}}
+
+**APPETIZER COLLECTION:**
+{{#each menu.appetizers}}
+{{name}} ............................ {{price}}
+{{description}}
+
+{{/each}}
+
+**SIGNATURE MAIN COURSES:**
+{{#each menu.mains}}
+{{name}} ............................ {{price}}
+{{description}}
+
+{{/each}}
+
+**ARTISAN DESSERTS:**
+{{#each menu.desserts}}
+{{name}} ............................ {{price}}
+{{description}}
+
+{{/each}}
+
+**CURATED BEVERAGES:**
+{{#each menu.beverages}}
+{{name}} ............................ {{price}}
+{{description}}
+
+{{/each}}
+
+{{#if menu.specialties}}
+**CHEF'S SIGNATURE SPECIALTIES:**
+{{#each menu.specialties}}
+{{name}} ............................ {{price}}
+{{description}}
+
+{{/each}}
+{{/if}}
+
+PREMIUM DESIGN STANDARDS:
+
+**LAYOUT ARCHITECTURE:**
+- Portrait orientation (8.5" x 14" professional menu proportions)
+- Generous white space creating breathing room and luxury perception
+- Hierarchical information flow: Restaurant name → tagline → sections → items → descriptions → prices
+- Balanced content distribution preventing overcrowding
+- Strategic use of vertical and horizontal space for optimal readability
+
+**TYPOGRAPHY EXCELLENCE:**
+- Restaurant name: Large, commanding presence with {{design.typography.headerFont}} styling
+- Section headers: Medium scale with {{design.typography.accent}} treatment for clear navigation
+- Menu items: {{design.typography.bodyFont}} ensuring effortless scanning
+- Descriptions: Smaller, refined text maintaining readability while providing detail
+- Prices: Prominent but elegant positioning using {{design.typography.accent}} style
+
+**VISUAL SOPHISTICATION:**
+- Color psychology aligned with {{restaurantSpecs.theme}} emotional response
+- {{design.decorativeElements}} integrated subtly to enhance theme without overwhelming content
+- {{design.backgroundTexture}} texture adding tactile quality and premium feel
+- Border treatments and dividers reflecting {{restaurantSpecs.priceRange}} expectations
+- Cultural motifs respecting {{restaurantSpecs.cuisineType}} authenticity
+
+**TECHNICAL SPECIFICATIONS:**
+- Print-ready resolution (300 DPI minimum)
+- Rich color saturation suitable for premium printing
+- Optimal contrast ratios ensuring readability under restaurant lighting
+- Professional finishing appearance suitable for lamination or premium paper stock
+- Consistent spacing and alignment throughout all elements
+
+**BRAND EXPERIENCE GOALS:**
+- Immediate recognition of {{restaurantSpecs.priceRange}} positioning
+- Emotional connection to {{restaurantSpecs.atmosphere}} experience
+- Cultural authenticity honoring {{restaurantSpecs.cuisineType}} traditions
+- Instagram-worthy design encouraging social media sharing
+- Memorable visual impact that enhances dining anticipation
+
+Create a menu card that functions as both practical tool and marketing masterpiece, elevating the entire dining experience from first glance.
