@@ -108,34 +108,11 @@ export const restaurantMenuGeneratorFlow = ai.defineFlow(
     outputSchema: RestaurantMenuSchema,
   },
   async (input) => {
-    // Create an elaborate and funny prompt for menu generation
-    const prompt = `You are a creative restaurant consultant tasked with designing a complete menu for a new restaurant. Be creative, funny, and engaging while maintaining authenticity to the restaurant concept.
+    // Load prompt using native Genkit ai.prompt()
+    const menuPrompt = ai.prompt("restaurant-menu-generator");
 
-    Restaurant Specifications:
-    - Name: ${input.name}
-    - Theme/Concept: ${input.theme}
-    - Cuisine Type: ${input.cuisineType}
-    - Price Range: ${input.priceRange}
-    - Atmosphere: ${input.atmosphere}
-    - Special Feature: ${input.specialFeature || "None specified"}
-
-    Generate a complete restaurant menu that perfectly captures the theme and personality of this establishment. Include:
-    - A catchy tagline that embodies the restaurant's spirit
-    - Creative and themed menu item names that are both appetizing and amusing
-    - Detailed descriptions that make each dish sound irresistible
-    - Appropriate pricing for the specified price range
-    - At least 4-6 items in each category (appetizers, mains, desserts, beverages)
-    - Optional specialty items that showcase the restaurant's unique character
-    - A fun fact about the restaurant that guests would find entertaining
-    - A vivid description of the restaurant's ambiance and decor
-
-    Make the menu items sound delicious while incorporating humor and theme-appropriate wordplay. The descriptions should be enticing enough to make customers want to order everything!`;
-
-    // Generate structured menu data - Genkit Model Calling
-    const { output } = await ai.generate({
-      prompt,
-      output: { schema: RestaurantMenuSchema },
-    });
+    // Generate structured menu data using the loaded prompt
+    const { output } = await menuPrompt(input);
 
     if (!output) throw new Error("Failed to generate restaurant menu");
 
@@ -151,44 +128,11 @@ export const menuCardDesignFlow = ai.defineFlow(
     outputSchema: MenuCardDesignSchema,
   },
   async (input) => {
-    const { restaurantSpecs, menuData } = input;
+    // Load prompt using native Genkit ai.prompt()
+    const designPrompt = ai.prompt("menu-card-design");
 
-    const prompt = `You are a professional graphic designer specializing in restaurant branding. Create comprehensive visual design specifications for a menu card that perfectly matches the restaurant's identity and complements the actual menu content.
-
-    Restaurant Specifications:
-    - Name: ${restaurantSpecs.name}
-    - Theme/Concept: ${restaurantSpecs.theme}
-    - Cuisine Type: ${restaurantSpecs.cuisineType}
-    - Price Range: ${restaurantSpecs.priceRange}
-    - Atmosphere: ${restaurantSpecs.atmosphere}
-    - Special Feature: ${restaurantSpecs.specialFeature || "None specified"}
-
-    Menu Content Analysis:
-    - Restaurant Name: ${menuData.restaurantName}
-    - Tagline: ${menuData.tagline}
-    - Number of Appetizers: ${menuData.appetizers.length}
-    - Number of Main Courses: ${menuData.mains.length}
-    - Number of Desserts: ${menuData.desserts.length}
-    - Number of Beverages: ${menuData.beverages.length}
-    - Has Specialties: ${
-      menuData.specialties && menuData.specialties.length > 0 ? "Yes" : "No"
-    }
-    - Ambiance Description: ${menuData.ambiance}
-    - Fun Fact: ${menuData.funFact}
-
-    Design a visual identity that captures the essence of this restaurant and works well with the actual menu content. Consider:
-    - Color psychology that matches the theme, cuisine, and menu personality
-    - Typography that reflects the restaurant's personality and ensures readability for all menu items
-    - Layout style that suits the price range, atmosphere, and menu content volume
-    - Decorative elements that enhance the theme without overwhelming the menu text
-    - Background textures that complement the overall design and menu readability
-
-    The design should be both visually appealing and functional for displaying the generated menu content effectively.`;
-
-    const { output } = await ai.generate({
-      prompt,
-      output: { schema: MenuCardDesignSchema },
-    });
+    // Generate design specifications using the loaded prompt
+    const { output } = await designPrompt(input);
 
     if (!output)
       throw new Error("Failed to generate menu card design specifications");
@@ -208,79 +152,16 @@ async function generateMenuCardImage(
     model: "gemini-2.5-flash-image-preview",
   });
 
-  // Create a detailed prompt for menu card image generation
-  const imagePrompt = `Create a professional, high-quality restaurant menu card design for "${
-    menu.restaurantName
-  }".
-
-RESTAURANT DETAILS:
-- Name: ${menu.restaurantName}
-- Tagline: ${menu.tagline}
-- Theme: ${restaurantSpecs.theme}
-- Cuisine: ${restaurantSpecs.cuisineType}
-- Price Range: ${restaurantSpecs.priceRange}
-- Atmosphere: ${restaurantSpecs.atmosphere}
-
-DESIGN SPECIFICATIONS:
-- Color Scheme: Primary ${design.colorScheme.primary}, Secondary ${
-    design.colorScheme.secondary
-  }, Background ${design.colorScheme.background}
-- Typography: Headers in ${design.typography.headerFont}, Body in ${
-    design.typography.bodyFont
-  }
-- Layout Style: ${design.layoutStyle}
-- Decorative Elements: ${design.decorativeElements}
-- Background: ${design.backgroundTexture}
-
-MENU CONTENT TO INCLUDE:
-Restaurant Name: ${menu.restaurantName}
-Tagline: ${menu.tagline}
-
-APPETIZERS:
-${menu.appetizers
-  .map((item: any) => `• ${item.name} - ${item.price}\n  ${item.description}`)
-  .join("\n")}
-
-MAIN COURSES:
-${menu.mains
-  .map((item: any) => `• ${item.name} - ${item.price}\n  ${item.description}`)
-  .join("\n")}
-
-DESSERTS:
-${menu.desserts
-  .map((item: any) => `• ${item.name} - ${item.price}\n  ${item.description}`)
-  .join("\n")}
-
-BEVERAGES:
-${menu.beverages
-  .map((item: any) => `• ${item.name} - ${item.price}\n  ${item.description}`)
-  .join("\n")}
-
-${
-  menu.specialties && menu.specialties.length > 0
-    ? `CHEF'S SPECIALTIES:\n${menu.specialties
-        .map(
-          (item: any) => `• ${item.name} - ${item.price}\n  ${item.description}`
-        )
-        .join("\n")}`
-    : ""
-}
-
-REQUIREMENTS:
-- Create a visually stunning, professional menu card design
-- Use elegant typography that matches the ${design.layoutStyle} style
-- Apply the specified color scheme consistently
-- Include all menu items with clear, readable pricing
-- Add decorative elements that enhance the ${restaurantSpecs.theme} theme
-- Ensure excellent readability and visual hierarchy
-- Make it look like a real, high-end restaurant menu card
-- Include subtle ${design.backgroundTexture} background texture
-- Size should be suitable for a restaurant menu (portrait orientation)
-
-The final design should be sophisticated, on-brand, and enticing to potential customers.`;
+  // Load prompt using native Genkit ai.prompt() and generate text
+  const imagePrompt = ai.prompt("menu-card-image-generation");
+  const { text } = await imagePrompt({
+    menu,
+    design,
+    restaurantSpecs,
+  });
 
   try {
-    const result = await model.generateContent([imagePrompt]);
+    const result = await model.generateContent([text]);
     const response = await result.response;
 
     // Check if the response contains image data
